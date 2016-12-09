@@ -16,7 +16,7 @@ template "/etc/init.d/freeswitch" do
 end
 
 service node['freeswitch']['service'] do
-  supports :restart => true, :start => true, :reload => true
+  supports :restart => true, :start => true
   action :enable
 end
 
@@ -28,7 +28,7 @@ template "#{node['freeswitch']['confpath']}/vars.xml" do
   cookbook node['freeswitch']['vars_template_cookbook']
   mode 0644
   variables local_ip_v4: node['freeswitch']['local_ip'], domain: node['freeswitch']['domain']
-  notifies :reload, "service[#{node['freeswitch']['service']}]"
+  notifies :restart, "service[#{node['freeswitch']['service']}]"
 end
 
 # Set modules to autoload
