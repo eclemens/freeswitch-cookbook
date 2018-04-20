@@ -1,11 +1,7 @@
 default['freeswitch']['package']['packages'] = case node['platform']
 when 'ubuntu', 'debian'
   %w(
-    freeswitch-meta-vanilla
-    freeswitch-lang
-    freeswitch-music
-    freeswitch-sounds
-    freeswitch-conf-vanilla
+    freeswitch-meta-all
   )
 when 'redhat', 'centos', 'fedora'
   %w(
@@ -21,12 +17,12 @@ default['freeswitch']['package']['config_template']   = 'vanilla'
 default['freeswitch']['package']['repo']['enable']    = true
 default['freeswitch']['package']['repo']['url']       = case node['platform']
 when 'ubuntu', 'debian'
-  'http://files.freeswitch.org/repo/deb/debian'
+  'http://files.freeswitch.org/repo/ubuntu-1604/freeswitch-1.6/'
 when 'redhat', 'centos', 'fedora'
   'http://files.freeswitch.org/yum/6/x86_64'
 end
 
-default['freeswitch']['package']['repo']['distro']    = 'wheezy'
+default['freeswitch']['package']['repo']['distro']    = 'xenial'
 default['freeswitch']['package']['repo']['branches']  = %w(main)
 default['freeswitch']['package']['repo']['keyserver'] = nil
 default['freeswitch']['package']['repo']['key']       = 'freeswitch.gpg'
